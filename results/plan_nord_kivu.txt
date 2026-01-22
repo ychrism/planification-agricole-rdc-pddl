@@ -1,0 +1,132 @@
+
+parsing domain file "domain.pddl" done successfully
+parsing problem file "problem_nord_kivu.pddl" done successfully
+Constants table:
+0: nord-kivu
+1: cafe
+2: the
+3: quinquina
+4: plants-cafe
+5: plants-the
+6: amendement
+7: terrasses
+8: irrigation-montagne
+
+Predicates table:
+0: terrain-disponible : province
+1: terrain-prepare : province
+2: culture-en-cours : province culture
+3: culture-mature : province culture
+4: production-recoltee : province culture
+5: ressource-disponible : ressource
+6: ressource-utilisee : ressource province
+7: infrastructure-presente : infrastructure province
+8: irrigation-active : province
+9: rendement-ameliore : province culture
+10: culture-adaptee : culture province
+
+Types table:
+0: province: 0
+1: culture: 1 2 3
+2: ressource: 4 5 6
+3: infrastructure: 7 8
+4: object: 0 1 2 3 4 5 6 7 8
+
+Coded initial state:
+(and (terrain-disponible nord-kivu) (ressource-disponible plants-cafe) (ressource-disponible plants-the) (ressource-disponible amendement) (infrastructure-presente terrasses nord-kivu) (infrastructure-presente irrigation-montagne nord-kivu) (culture-adaptee cafe nord-kivu) (culture-adaptee the nord-kivu) (culture-adaptee quinquina nord-kivu))
+
+Coded goal state:
+(and (production-recoltee nord-kivu cafe)
+  (irrigation-active nord-kivu)
+  (rendement-ameliore nord-kivu cafe)))
+
+Coded operators:
+
+Op preparer-sol
+Instantiations:
+?X0 - province : ? 
+?X1 - ressource : ? 
+Preconditions:
+(and (terrain-disponible ?X0)
+  (ressource-disponible ?X1))
+Effects:
+(and (terrain-prepare ?X0)
+  (not (terrain-disponible ?X0))
+  (ressource-utilisee ?X1 ?X0))
+
+Op cultiver
+Instantiations:
+?X0 - province : ? 
+?X1 - culture : ? 
+?X2 - ressource : ? 
+Preconditions:
+(and (terrain-prepare ?X0)
+  (ressource-disponible ?X2)
+  (culture-adaptee ?X1 ?X0))
+Effects:
+(and (culture-en-cours ?X0 ?X1)
+  (not (terrain-prepare ?X0)))
+
+Op irriguer
+Instantiations:
+?X0 - province : ? 
+?X1 - culture : ? 
+?X2 - infrastructure : ? 
+Preconditions:
+(and (culture-en-cours ?X0 ?X1)
+  (infrastructure-presente ?X2 ?X0))
+Effects:
+(and (irrigation-active ?X0)
+  (rendement-ameliore ?X0 ?X1))
+
+Op maturation
+Instantiations:
+?X0 - province : ? 
+?X1 - culture : ? 
+Preconditions:
+(and (culture-en-cours ?X0 ?X1))
+Effects:
+(and (culture-mature ?X0 ?X1))
+
+Op recolter
+Instantiations:
+?X0 - province : ? 
+?X1 - culture : ? 
+Preconditions:
+(and (culture-en-cours ?X0 ?X1)
+  (culture-mature ?X0 ?X1))
+Effects:
+(and (production-recoltee ?X0 ?X1)
+  (terrain-disponible ?X0)
+  (not (culture-en-cours ?X0 ?X1))
+  (not (culture-mature ?X0 ?X1)))
+
+java.lang.IllegalStateException: Instrumentation environment not initialised.
+
+encoding problem done successfully (24 ops, 18 facts)
+* starting A*
+java.lang.IllegalStateException: Instrumentation environment not initialised.
+java.lang.IllegalStateException: Instrumentation environment not initialised.
+* A* succeeded
+
+found plan as follows:
+
+0: ( preparer-sol nord-kivu plants-cafe) [1]
+1: (cultiver nord-kivu cafe plants-cafe) [1]
+2: (          maturation nord-kivu cafe) [1]
+3: (  irriguer nord-kivu cafe terrasses) [1]
+4: (            recolter nord-kivu cafe) [1]
+
+plan total cost: 5.00
+
+
+time spent:       0.01 seconds parsing 
+                  0.01 seconds encoding 
+                  0.00 seconds searching
+                  0.03 seconds total time
+
+memory used:     -0.00 MBytes for problem representation
+                 -0.00 MBytes for searching
+                 -0.00 MBytes total
+
+

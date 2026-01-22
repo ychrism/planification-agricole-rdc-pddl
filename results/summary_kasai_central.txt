@@ -1,0 +1,24 @@
+PROVINCE: Kasai Central
+STATUS: SUCCÈS
+TOTAL_TIME: .332929482s
+EXIT_CODE: 0
+
+--- PLAN ---
+
+0: (      preparer-sol kasai-central semences-mais) [1]
+1: (     cultiver kasai-central mais semences-mais) [1]
+2: (                 maturation kasai-central mais) [1]
+3: (irriguer kasai-central mais irrigation-surface) [1]
+4: (                   recolter kasai-central mais) [1]
+
+plan total cost: 5.00
+
+
+time spent:       0.01 seconds parsing 
+                  0.02 seconds encoding 
+                  0.01 seconds searching
+                  0.03 seconds total time
+
+memory used:     -0.00 MBytes for problem representation
+                 -0.00 MBytes for searching
+                 -0.00 MBytes total

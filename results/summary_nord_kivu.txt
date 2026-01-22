@@ -1,0 +1,24 @@
+PROVINCE: Nord Kivu
+STATUS: SUCCÈS
+TOTAL_TIME: .327290484s
+EXIT_CODE: 0
+
+--- PLAN ---
+
+0: ( preparer-sol nord-kivu plants-cafe) [1]
+1: (cultiver nord-kivu cafe plants-cafe) [1]
+2: (          maturation nord-kivu cafe) [1]
+3: (  irriguer nord-kivu cafe terrasses) [1]
+4: (            recolter nord-kivu cafe) [1]
+
+plan total cost: 5.00
+
+
+time spent:       0.01 seconds parsing 
+                  0.01 seconds encoding 
+                  0.00 seconds searching
+                  0.03 seconds total time
+
+memory used:     -0.00 MBytes for problem representation
+                 -0.00 MBytes for searching
+                 -0.00 MBytes total

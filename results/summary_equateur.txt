@@ -1,0 +1,24 @@
+PROVINCE: Equateur
+STATUS: SUCCÈS
+TOTAL_TIME: .331957776s
+EXIT_CODE: 0
+
+--- PLAN ---
+
+0: (     preparer-sol equateur semences-manioc) [1]
+1: (  cultiver equateur manioc semences-manioc) [1]
+2: (                maturation equateur manioc) [1]
+3: (irriguer equateur manioc irrigation-goutte) [1]
+4: (                  recolter equateur manioc) [1]
+
+plan total cost: 5.00
+
+
+time spent:       0.01 seconds parsing 
+                  0.01 seconds encoding 
+                  0.00 seconds searching
+                  0.03 seconds total time
+
+memory used:     -0.00 MBytes for problem representation
+                 -0.00 MBytes for searching
+                 -0.00 MBytes total
